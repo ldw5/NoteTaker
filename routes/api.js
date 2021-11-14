@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const storage = require("/notes");
+//const storage = require("/notes");
 //get notes request from db
 //req response from http with info, then res to send back http response
 routes.get("/notes",(req,res) => {
