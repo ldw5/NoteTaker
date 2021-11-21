@@ -14,19 +14,6 @@ app.use(express.static("public"));
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
-//routes
-app.get('/notes', function(req, res) {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
-});
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 //Api GET the request
 app.get('/api/notes', function(req,res) {
     readFileAsync('./db/db.json', 'utf-8').then(function(data) {
@@ -66,6 +53,18 @@ app.delete('/api/notes/:id', function(req,res) {
     })
 })
 
+//routes
+app.get('/notes', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 // start the server
 app.listen(PORT,()=> console.log(`I'm listening on PORT: ${PORT}`));
